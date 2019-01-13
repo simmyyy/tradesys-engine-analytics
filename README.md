@@ -1,2 +1,2 @@
 # tradesys-engine-analytics
-Analytics engine for tradesys engine
+Analytics engine for trade system
