@@ -1,4 +1,4 @@
-package main.scala.com.tradesys.jobs
+package com.tradesys.jobs
 
 object DataStreamingJob {
   def main(args: Array[String]): Unit = {

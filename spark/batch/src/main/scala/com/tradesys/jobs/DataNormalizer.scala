@@ -1,6 +1,6 @@
-package main.scala.com.tradesys.jobs
+package com.tradesys.jobs
 
-import main.scala.com.tradesys.utils.properties.ApplicationProperties
+import com.tradesys.utils.properties.ApplicationProperties
 import org.apache.spark.sql.SparkSession
 
 object DataNormalizer {
