@@ -1,9 +1,10 @@
 package com.tradesys.job
 
+import com.tradesys.properties.ApplicationProperties
 import org.apache.spark.sql.SparkSession
 
 object DataNormalizer {
-  def execute(sparkSession: SparkSession): Unit = {
+  def execute(sparkSession: SparkSession, properties: ApplicationProperties): Unit = {
     import sparkSession.implicits._
 
     Seq(

@@ -6,6 +6,7 @@ object Dependencies {
     val scala = "2.12.8"
     val spark = "2.4.0"
     val scallop = "3.1.5"
+    val typeSafeConfig = "1.3.2"
   }
   
   val sparkSql = "org.apache.spark" %% "spark-sql" % versions.spark
@@ -13,6 +14,7 @@ object Dependencies {
   val sparkMongoConnector = "org.mongodb.spark" %% "mongo-spark-connector" % versions.spark
   
   val scallop = "org.rogach" %% "scallop" % versions.scallop
+  val typeSafeConfig = "com.typesafe" % "config" % versions.typeSafeConfig
   
   val spark: Seq[ModuleID] = Seq(sparkSql, sparkCore, sparkMongoConnector)
 }

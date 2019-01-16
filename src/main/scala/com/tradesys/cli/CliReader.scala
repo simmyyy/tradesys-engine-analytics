@@ -2,7 +2,7 @@ package com.tradesys.cli
 
 import org.rogach.scallop.{ScallopConf, ScallopOption}
 
-case class CliObject(configPath: String, sourceCollection: String)
+final case class CliObject(configPath: String, sourceCollection: String)
 
 class CliReader(args: Array[String]) extends ScallopConf(args) {
   private val configPath: ScallopOption[String] = opt[String](name = "config", required = true)
