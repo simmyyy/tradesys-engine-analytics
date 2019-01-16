@@ -1,9 +1,9 @@
-package com.tradesys.batch.properties
+package main.scala.com.tradesys.utils.properties
 
 import java.io.File
 
-import com.tradesys.batch.cli.CliObject
 import com.typesafe.config.{Config, ConfigFactory}
+import main.scala.com.tradesys.utils.cli.CliObject
 
 final case class SourceDbData(user: String, password: String, host: String, port: String, database: String)
 

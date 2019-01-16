@@ -1,10 +1,16 @@
-package com.tradesys.batch.job
+package main.scala.com.tradesys.jobs
 
-import com.tradesys.batch.cli.CliReader
-import com.tradesys.batch.properties.ApplicationProperties
+import main.scala.com.tradesys.utils.cli.CliReader
+import main.scala.com.tradesys.utils.properties.ApplicationProperties
 import org.apache.spark.sql.SparkSession
 
 object DataNormalizerJob {
+
+  /**
+    * Entry point for application batch processing.
+    *
+    * @param args e.g. --config /path_to_conf.../application.conf --source-collection fxrate
+    */
   def main(args: Array[String]): Unit = {
     val cliReader = new CliReader(args)
     val cliObject = cliReader.createCliObject()
