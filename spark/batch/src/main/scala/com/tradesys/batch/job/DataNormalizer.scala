@@ -1,6 +1,6 @@
-package com.tradesys.job
+package com.tradesys.batch.job
 
-import com.tradesys.properties.ApplicationProperties
+import com.tradesys.batch.properties.ApplicationProperties
 import org.apache.spark.sql.SparkSession
 
 object DataNormalizer {

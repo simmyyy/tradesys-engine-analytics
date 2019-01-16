@@ -1,4 +1,4 @@
-package com.tradesys.cli
+package com.tradesys.batch.cli
 
 import org.rogach.scallop.{ScallopConf, ScallopOption}
 
