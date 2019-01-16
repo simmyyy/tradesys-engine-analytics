@@ -5,9 +5,14 @@ object Dependencies {
     val java = "11"
     val scala = "2.12.8"
     val spark = "2.4.0"
+    val scallop = "3.1.5"
   }
   
   val sparkSql = "org.apache.spark" %% "spark-sql" % versions.spark
   val sparkCore = "org.apache.spark" %% "spark-core" % versions.spark
-  val spark: Seq[ModuleID] = Seq(sparkSql, sparkCore)
+  val sparkMongoConnector = "org.mongodb.spark" %% "mongo-spark-connector" % versions.spark
+  
+  val scallop = "org.rogach" %% "scallop" % versions.scallop
+  
+  val spark: Seq[ModuleID] = Seq(sparkSql, sparkCore, sparkMongoConnector)
 }

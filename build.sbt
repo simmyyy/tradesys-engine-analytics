@@ -6,7 +6,7 @@ version := "0.1"
 
 scalaVersion := "2.12.8"
 
-libraryDependencies ++= spark
+libraryDependencies ++= spark :+ scallop
 
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard

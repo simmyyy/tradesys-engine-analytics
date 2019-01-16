@@ -13,5 +13,6 @@ object DataNormalizer {
     )
       .toDF("index", "message")
       .show(3, truncate = false)
+
   }
 }
