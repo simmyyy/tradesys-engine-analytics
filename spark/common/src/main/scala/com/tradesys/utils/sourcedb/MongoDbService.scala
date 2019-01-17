@@ -12,8 +12,8 @@ class MongoDbService(properties: ApplicationProperties) {
     *
     * @return configuration object
     */
-  def createMongoReadConfig(): ReadConfig = {
-    ReadConfig(Map("database" -> sourceDbObject.database, "collection" -> "stock_chart", "uri" -> connectionString))
+  def createMongoReadConfig(collectionName: String): ReadConfig = {
+    ReadConfig(Map("database" -> sourceDbObject.database, "collection" -> collectionName, "uri" -> connectionString))
   }
 
   /**

@@ -9,7 +9,7 @@ object DataNormalizerJob {
   /**
     * Entry point for application batch processing.
     *
-    * @param args e.g. --config /path_to_conf.../application.conf --source-collection fxrate
+    * @param args e.g. --config /path_to_conf.../application.conf
     */
   def main(args: Array[String]): Unit = {
     val cliReader = new CliReader(args)

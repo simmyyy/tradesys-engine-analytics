@@ -17,9 +17,9 @@ object DataNormalizer {
       .show(3, truncate = false)
 
     val mongoDbService = new MongoDbService(properties)
-    val mongoReadConfig = mongoDbService.createMongoReadConfig()
+    var mongoReadConfig = mongoDbService.createMongoReadConfig("stock_chart")
 
-    val sourceData = sparkSession.loadFromMongoDB(mongoReadConfig).toJSON
-    sourceData.show(1, truncate = false)
+    val sourceData = sparkSession.loadFromMongoDB(mongoReadConfig).filter("dataProvider='IEXTrading'")
+    sourceData.show(5, truncate = false)
   }
 }
