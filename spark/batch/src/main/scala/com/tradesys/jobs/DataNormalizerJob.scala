@@ -13,8 +13,7 @@ object DataNormalizerJob {
     */
   def main(args: Array[String]): Unit = {
     val cliReader = new CliReader(args)
-    val cliObject = cliReader.createCliObject()
-    val properties = new ApplicationProperties(cliObject)
+    val properties = new ApplicationProperties(cliReader.createCliObject())
 
     val sparkSession = SparkSession
       .builder()
