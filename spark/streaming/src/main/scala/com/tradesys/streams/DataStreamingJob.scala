@@ -1,4 +1,4 @@
-package com.tradesys.jobs
+package com.tradesys.streams
 
 object DataStreamingJob {
   def main(args: Array[String]): Unit = {
