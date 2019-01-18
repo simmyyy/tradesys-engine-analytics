@@ -1,5 +1,6 @@
 package com.tradesys.streams
 
+import com.engine.processes.IProcessable
 import com.tradesys.utils.properties.ApplicationProperties
 import com.tradesys.utils.sources.{KafkaService, PostgreSQLService}
 import org.apache.spark.sql.{DataFrame, SparkSession}
@@ -7,7 +8,9 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 /**
   * class under development
   */
-object ForeignExchangeStreamProcess {
+class ForeignExchangeStreamProcess extends IProcessable {
+
+  @Override
   def execute(sparkSession: SparkSession, properties: ApplicationProperties): Unit = {
     import org.apache.spark.sql.functions._
     import sparkSession.implicits._
@@ -44,6 +47,12 @@ object ForeignExchangeStreamProcess {
       batchDF.write
         .format("jdbc")
         .mode("overwrite")
+        .options(postgreService.createConfig("fxrate_realtime"))
+        .save()
+
+      batchDF.write
+        .format("jdbc")
+        .mode("append")
         .options(postgreService.createConfig("fxrate"))
         .save()
     }).start()
@@ -52,7 +61,7 @@ object ForeignExchangeStreamProcess {
 
   }
 
-  def sampleKafkaCollection(sparkSession: SparkSession, properties: ApplicationProperties, collection: String) = {
+  def sampleKafkaCollection(sparkSession: SparkSession, properties: ApplicationProperties, collection: String): Unit = {
     val kafkaService = new KafkaService(properties)
     sparkSession
       .read
