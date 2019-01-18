@@ -29,6 +29,17 @@ object ApplicationProperties {
     SourceDbData(sourceDbUser, sourceDbPassword, sourceDbHost, sourceDbPort, sourceDbDatabase)
   }
 
+  //@TODO think if DB connections can be generify
+  def createTargetPostgreDbObject(config: Config): SourceDbData = {
+    val sourceDbUser = config.getString("target-postgre.user")
+    val sourceDbPassword = config.getString("target-postgre.password")
+    val sourceDbHost = config.getString("target-postgre.host")
+    val sourceDbPort = config.getString("target-postgre.port")
+    val sourceDbDatabase = config.getString("target-postgre.database")
+
+    SourceDbData(sourceDbUser, sourceDbPassword, sourceDbHost, sourceDbPort, sourceDbDatabase)
+  }
+
   def createKafkaSource(config: Config): SourceKafka = {
     val server = config.getString("source-kafka.host")
     val port = config.getString("source-kafka.port")

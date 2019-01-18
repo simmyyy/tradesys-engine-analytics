@@ -21,6 +21,7 @@ object Dependencies {
   val scallop = "org.rogach" %% "scallop" % versions.scallop
   val typeSafeConfig = "com.typesafe" % "config" % versions.typeSafeConfig
   val json = "com.typesafe.play" %% "play-json" % versions.jsonConfig
-
-  val spark: Seq[ModuleID] = Seq(sparkSql, sparkCore, sparkMongoConnector, sparkStreaming, sparkStreamingKafka, sparkKafkaSql)
+  val postgre = "org.postgresql" % "postgresql" % "9.4-1206-jdbc4"
+  
+  val spark: Seq[ModuleID] = Seq(sparkSql, sparkCore, sparkMongoConnector, sparkStreaming, sparkStreamingKafka, sparkKafkaSql, postgre)
 }

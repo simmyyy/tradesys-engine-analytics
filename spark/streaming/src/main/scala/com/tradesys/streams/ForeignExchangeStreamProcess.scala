@@ -1,16 +1,19 @@
 package com.tradesys.streams
 
 import com.tradesys.utils.properties.ApplicationProperties
-import com.tradesys.utils.sources.KafkaService
-import org.apache.spark.sql.SparkSession
+import com.tradesys.utils.sources.{KafkaService, PostgreSQLService}
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
   * class under development
   */
 object ForeignExchangeStreamProcess {
   def execute(sparkSession: SparkSession, properties: ApplicationProperties): Unit = {
+    import org.apache.spark.sql.functions._
+    import sparkSession.implicits._
 
     val kafkaService = new KafkaService(properties)
+    val postgreService = new PostgreSQLService(properties)
     val schema = sparkSession.read.json("schemas/fxrate_coinapi.json").schema
 
     val df = sparkSession
@@ -21,8 +24,7 @@ object ForeignExchangeStreamProcess {
       .load()
       .selectExpr("CAST(value as STRING)")
 
-    import org.apache.spark.sql.functions._
-    import sparkSession.implicits._
+
     val query1 = df.withColumn("new", from_json($"value", schema))
       .withColumn("rates", explode(col("new.data._children.rates._children")))
       .select(col("rates._children.asset_id_quote._value").alias("asset_quote_id"),
@@ -37,7 +39,14 @@ object ForeignExchangeStreamProcess {
 
     query1.printSchema
 
-    val queryWritable = query1.writeStream.format("console").start()
+    val queryWritable = query1.writeStream.foreachBatch((batchDF: DataFrame, batchId: Long) => {
+      Class.forName(postgreService.getDriverName())
+      batchDF.write
+        .format("jdbc")
+        .mode("overwrite")
+        .options(postgreService.createConfig("fxrate"))
+        .save()
+    }).start()
 
     queryWritable.awaitTermination()
 
