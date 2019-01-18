@@ -1,4 +1,4 @@
-package com.tradesys.utils.sourcedb
+package com.tradesys.utils.sources
 
 import com.mongodb.spark.config.ReadConfig
 import com.tradesys.utils.properties.{ApplicationProperties, SourceDbData}

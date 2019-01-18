@@ -7,6 +7,8 @@ import com.typesafe.config.{Config, ConfigFactory}
 
 final case class SourceDbData(user: String, password: String, host: String, port: String, database: String)
 
+final case class SourceKafka(server: String, port: String)
+
 case class ApplicationProperties(cliObject: CliObject) {
   val config: Config = ConfigFactory.parseFile(new File(cliObject.configPath))
 }
@@ -25,5 +27,12 @@ object ApplicationProperties {
     val sourceDbDatabase = config.getString("source-db.database")
 
     SourceDbData(sourceDbUser, sourceDbPassword, sourceDbHost, sourceDbPort, sourceDbDatabase)
+  }
+
+  def createKafkaSource(config: Config): SourceKafka = {
+    val server = config.getString("source-kafka.host")
+    val port = config.getString("source-kafka.port")
+
+    SourceKafka(server, port)
   }
 }

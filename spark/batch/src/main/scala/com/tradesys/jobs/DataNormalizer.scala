@@ -2,7 +2,7 @@ package com.tradesys.jobs
 
 import com.mongodb.spark.sql.toSparkSessionFunctions
 import com.tradesys.utils.properties.ApplicationProperties
-import com.tradesys.utils.sourcedb.MongoDbService
+import com.tradesys.utils.sources.MongoDbService
 import org.apache.spark.sql.SparkSession
 
 object DataNormalizer {
