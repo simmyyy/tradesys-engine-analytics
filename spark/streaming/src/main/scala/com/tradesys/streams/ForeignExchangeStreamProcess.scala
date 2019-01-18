@@ -10,8 +10,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   */
 class ForeignExchangeStreamProcess extends IProcessable {
 
-  @Override
-  def execute(sparkSession: SparkSession, properties: ApplicationProperties): Unit = {
+  override def execute(sparkSession: SparkSession, properties: ApplicationProperties): Unit = {
     import org.apache.spark.sql.functions._
     import sparkSession.implicits._
 
